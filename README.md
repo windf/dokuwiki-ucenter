@@ -1,5 +1,4 @@
 # dokuwiki-ucenter
-add ucenter authentication method for DokuWiki 
 Test Version Release 2014-09-29d "Hrun"
 
  Introduction
