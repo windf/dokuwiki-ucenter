@@ -1,6 +1,6 @@
 # dokuwiki-ucenter
-add ucenter authentication method for DokuWiki latest version
-
+add ucenter authentication method for DokuWiki 
+Test Version Release 2014-09-29d "Hrun"
 
  Introduction
 --------------
@@ -8,9 +8,9 @@ add ucenter authentication method for DokuWiki latest version
 
 HowToUse
 ----------
-reference https://github.com/daxingplay/dokuwiki_ucenter
-Put all files in Dokuwiki's base dir.
 
+- Put all files in Dokuwiki's base dir.
+- Reference https://github.com/daxingplay/dokuwiki_ucenter
 
 Thanks
 ----------
