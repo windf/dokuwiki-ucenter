@@ -353,7 +353,15 @@ class auth_plugin_authuc extends DokuWiki_Auth_Plugin {
     		setcookie($this->cnf['cookie'], '', -86400);
     		if($uid > 0){
     			$_SERVER['REMOTE_USER'] = $username;
-    			$user_info = $this->_uc_get_user_full($uid, 1);
+    			//$user_info = $this->_uc_get_user_full($uid, 1);
+    			$grps = ($user == 'admin') ? 'admin' : 'user';
+
+    			$user_info = array(
+    					'username' => $user,
+    					'grps' => array($grps),
+    					'password' => $pass,
+    					 
+    			);
     			$this->_uc_setcookie($this->cnf['cookie'], uc_authcode($uid."\t".$user_info['password']."\t".$this->_convert_charset($username), 'ENCODE'));
     			$synlogin = uc_user_synlogin($uid);
     			// echo uc_user_synlogin($uid);

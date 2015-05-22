@@ -10,7 +10,7 @@ HowToUse
 
 - Put all files in Dokuwiki's base dir.
 - Reference https://github.com/daxingplay/dokuwiki_ucenter
-
+- 如果你的站点不在一台服务器上，设置UC_CONNECT 为空
 Thanks
 ----------
 @daxingplay
