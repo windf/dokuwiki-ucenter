@@ -71,7 +71,9 @@ class auth_plugin_authuc extends DokuWiki_Auth_Plugin {
     public function logOff(){
     	$this->_uc_setcookie($this->cnf['cookie'], '', -1);
     	$synlogout = uc_user_synlogout();
-    	msg('登出成功'.$synlogout, 0);
+	$reload = '<script type="text/javascript">window.location.reload()</script>';
+    	msg('登出成功'.$synlogout.$reload, 0);
+	#return true;
     }
     
     /**
@@ -362,11 +364,12 @@ class auth_plugin_authuc extends DokuWiki_Auth_Plugin {
     					'password' => $pass,
     					 
     			);
-    			$this->_uc_setcookie($this->cnf['cookie'], uc_authcode($uid."\t".$user_info['password']."\t".$this->_convert_charset($username), 'ENCODE'));
+    			#$this->_uc_setcookie($this->cnf['cookie'], uc_authcode($uid."\t".$user_info['password']."\t".$this->_convert_charset($username), 'ENCODE'));
     			$synlogin = uc_user_synlogin($uid);
+			$reload = '<script type="text/javascript">window.location.reload()</script>';
     			// echo uc_user_synlogin($uid);
     			// echo does not send the output correctly, but function msg() can store the messages in session and output them even the page refreshes.
-    			msg('登陆成功'.$synlogin, 0);
+    			msg('登陆成功'.$synlogin.$reload, 0);
     			$checked = true;
     		}else{
     			if(!$silent){
@@ -399,7 +402,15 @@ class auth_plugin_authuc extends DokuWiki_Auth_Plugin {
     					$user_info = $session['info'];
     					$checked = true;
     				}else{
-    					$user_info = $this->_uc_get_user_full($uid, 1);
+					$grps = ($username == 'admin') ? 'admin' : 'user';
+					$user_info = array(
+						 'uid'	    => $uid,
+                                       		 'username' => $username,
+                                        	 'grps' => array($grps),
+                                        	 'password' => $password,
+                                         
+                        		);
+    					#$user_info = $this->_uc_get_user_full($uid, 1);
     					if($uid == $user_info['uid'] && $password == $user_info['password']){
     						// he has logged in from other uc apps
     						$checked = true;
